@@ -248,6 +248,7 @@ func(sc *ShardCtrler)RemoveGidServers(Gids []int)Config{
 		if flag {
 			need=append(need, sc.gidshares[key]...)
 			delete(sc.gidshares,key)
+			sc.rf.Leave(key)
 		}else{
 			newconfig.Groups[key]=value
 			gids=append(gids, key)
